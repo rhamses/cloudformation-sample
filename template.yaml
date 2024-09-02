@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: "Aplicação que transforma arquivos em Parquet e salva em S3"
 
 Resources:
-  MotorIngestao:
+  MotorIngestao2:
     Type: "AWS::Serverless::Function"
     Properties:
       CodeUri: "src/"
