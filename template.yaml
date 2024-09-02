@@ -23,8 +23,8 @@ Resources:
       Handler: app.handler
       Runtime: python3.12
       MemorySize: 10239
-      LoggingConfig:
-        LogGroup: !Ref VertcLog
+      # LoggingConfig:
+      #   LogGroup: !Ref VertcLog
       Timeout: 60
       Architectures:
         - x86_64
@@ -38,7 +38,7 @@ Resources:
       # Outputs:
       #   MotorGestaoLambda:
       #     Value: arn:aws:lambda:us-east-1:495424662214:function:vertc-lastros-motor-ingestao-dev
-  VertcLog:
-    Type: AWS::Logs::LogGroup
-    Properties:
-      LogGroupName: !Sub /aws/lambda/vertc-converte-arquivos-${Environment}
+  # VertcLog:
+  #   Type: AWS::Logs::LogGroup
+  #   Properties:
+  #     LogGroupName: !Sub /aws/lambda/vertc-converte-arquivos-${Environment}
