@@ -1,13 +1,10 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Aplicação que transforma arquivos em Parquet e salva em S3"
-
 Resources:
-  MotorIngestao:
-    Type: "AWS::Serverless::Function"
+  Teste:
+    Type: AWS::Serverless::Function
     Properties:
-      CodeUri: "src/"
-      Description: "Função que recebe um arquivo do S3, identifica a extensão, converte para Parquet e salva no S3"
-      Handler: "app.handler"
-      Runtime: "python3.11"
-      MemorySize: 10239
-      Timeout: 60
+      CodeUri: s3://mybucket/path/to/code
+      Handler: index.handler
+      Runtime: node
+
