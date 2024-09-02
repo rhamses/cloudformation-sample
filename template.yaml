@@ -15,7 +15,6 @@ Parameters:
     Description: Nome do bucket S3 onde os arquivos transformados estarão
 Resources:
   VertcConverteArquivos:
-    FunctionName: vertc-lastros-copia-arquivos
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: src/
