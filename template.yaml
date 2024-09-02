@@ -1,8 +1,8 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
-Description: Aplicação que transforma arquivos em Parquet e salva em S3
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Aplicação que transforma arquivos em Parquet e salva em S3"
 Resources:
-  VertcConverteArquivos:
+  MotorIngestao:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: src/
