@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Aplicação que transforma arquivos em Parquet e salva em S3
+Parameters:
+  Environment:
+    Type: String
+    Default: develop
+    AllowedValues:
+      - develop
+      - homolog
+      - master
+    Description: Ambiente onde a aplicação será implantada
+  S3Bucket:
+    Type: String
+    Description: Nome do bucket S3 onde os arquivos transformados estarão
+Resources:
+  VertcConverteArquivos:
+    FunctionName: vertc-lastros-copia-arquivos
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Description: "Função que recebe um arquivo do S3, identifica a extensão, converte para Parquet e salva no S3"
+      Handler: app.handler
+      Runtime: python3.12
+      MemorySize: 10239
+      LoggingConfig:
+        LogGroup: !Ref VertcLog
+      Timeout: 60
+      Architectures:
+        - x86_64
+      Layers: 
+        - "arn:aws:lambda:us-east-1:336392948345:layer:AWSSDKPandas-Python312:13"
+      # Events:
+      #   EventBridge:
+      #     Type: EventBridge
+      #     Properties:
+      #       EventArn: arn:aws:events:us-east-1:495424662214:rule/vertc-lastros-motor-inges-VertcLastrosMotorIngestao-sUtHKmL4TBA3
+      # Outputs:
+      #   MotorGestaoLambda:
+      #     Value: arn:aws:lambda:us-east-1:495424662214:function:vertc-lastros-motor-ingestao-dev
+  VertcLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/vertc-converte-arquivos-${Environment}
