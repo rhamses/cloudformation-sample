@@ -8,9 +8,16 @@ Resources:
   MotorIngestao:
     Type: "AWS::Serverless::Function"
     Properties:
-      CodeUri: src/
+      CodeUri:
+        Bucket: !Ref NomeDoBucket
+        Key: "src.zip"
       Description: "Função que recebe um arquivo do S3, identifica a extensão, converte para Parquet e salva no S3"
       Handler: "app.handler"
       Runtime: "python3.11"
       MemorySize: 10239
       Timeout: 60
+  NomeDoBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: "amb1-teste"
+
